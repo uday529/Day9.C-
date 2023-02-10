@@ -1,0 +1,133 @@
+
+Multiple catch blocks in single try block:
+ try
+            {
+                // string s = null;
+                int n= int.Parse(Console.ReadLine());
+                int n1=int.Parse(Console.ReadLine());
+                Console.WriteLine(n / n1);
+            }
+            catch (DivideByZeroException dzEx)
+            {
+                Console.WriteLine(dzEx.Message);
+            }
+            catch (OverflowException ovEx)
+            {
+                Console.WriteLine(ovEx.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+Common language Runtime will be executing the code 
+        which throws the exception
+Throw keyword is used to instructing the CLR to throw the exception given
+
+Console.WriteLine("enter the email");
+            String email=Console.ReadLine();
+            if(email.Length>10)
+            {
+                throw new Exception("Length of email is more than 10");
+            }
+finally Block:
+used for 
+- connecting database
+--open connection
+--manipulationsa( Done correctly or not correctly)
+--Closing connection
+
+ finally
+            {
+                Console.WriteLine("Excecution done successdully");
+                Console.WriteLine("Base don the input given the exception is given as output");
+            }
+
+*********************************************************************************************************************************************************
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Xml.XPath;
+
+namespace ListCustomObjectDemo
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //list of integers
+            List<int> listOfNumbers = new List<int>();
+            listOfNumbers.Add(100);
+            listOfNumbers.Add(50);
+            listOfNumbers.Add(90);
+
+            Employee uday = new Employee();
+            uday.Name = "uday";
+            uday.Age = 20;
+            uday.Dept = "Accounts";
+            uday.Email = "uday@529";
+
+            //list of employee
+            //syntx for List Lisy<T> , T-->Type
+            List<Employee> listOfEmployees = new List<Employee>();
+
+            listOfEmployees.Add(uday);
+
+            Employee dev = new Employee();
+            dev.Name = "dev";
+            dev.Age = 23;
+            dev.Dept = "Accounts";
+            dev.Email = "dev@123";
+
+            listOfEmployees.Add(dev);
+
+            listOfEmployees.Add(new Employee() { Name = "sai", Age = 22, Dept = "training", Email = "sai@111" });
+            listOfEmployees.Add(new Employee() { Name = "diva", Age = 21, Dept = "training", Email = "div@156" });
+            listOfEmployees.Add(new Employee() { Name = "yash", Age = 22, Dept = "training", Email = "yash@123" });
+
+            Console.WriteLine("Name         Dept         Age         Email");
+
+            foreach (Employee item in listOfEmployees)
+            {
+                Console.WriteLine(item.Name + "     " + item.Dept + "      " + item.Age + "     "+item.Email+"        ");
+            }
+
+            Console.WriteLine("Display the Employee From training department");
+
+            foreach (Employee item in listOfEmployees)
+            {
+                if (item.Dept == "training")
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+
+            //Sql query structure - Select temp.Name from listOfEmployees as temp where temp
+
+            //LINQ - Langguage Integrated Query
+            var query = from temp in listOfEmployees where temp.Dept == "training" select temp.Name;
+
+            foreach (var item in query)
+            {
+                Console.WriteLine(item);
+            }
+
+            //Data Source - List(C#),Tables(SQL),Access tables(SQL),XML,JSON
+
+            Console.WriteLine("Display data of employee names starting with u");
+            var query1 = from temp in listOfEmployees where temp.Name.StartsWith("u") select temp;
+            foreach (var item in query1)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+        }
+
+    }
+}
+
+
+***********************************************************************************************************************************************************************
+
+
